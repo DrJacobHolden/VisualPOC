@@ -1,6 +1,8 @@
 import * as React from "react";
 import Chart from "chart.js";
 
+import "./../style/visual.less";
+
 const { useEffect, useRef } = React;
 
 const ViolationTrend = ({ size, dates }) => {
@@ -91,19 +93,12 @@ const ViolationTrend = ({ size, dates }) => {
   const { width, height } = size;
 
   return (
-    <div
-      style={{
-        border: "1px solid #e8e8e8",
-        padding: 24,
-        display: "flex",
-        flexDirection: "column",
-      }}
-    >
+    <div className="root">
       <h2 style={{ marginTop: 0 }}>VIOLATION TREND</h2>
       <div
+        className="chart-container"
         style={{
-          height: `calc(${height}px - 102px)`,
-          position: "relative",
+          height: `calc(${height}px - 104px)`,
         }}
       >
         <canvas ref={canvas} />

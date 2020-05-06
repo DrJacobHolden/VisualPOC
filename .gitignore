@@ -1,0 +1,17 @@
+# IDE
+/**/.vscode
+/**/.idea
+
+# NPM
+/**/node_modules
+/**/.npmrc
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+.tmp
+webpack.statistics.dev.html
+
+# MISC
+.DS_Store
+*.iml

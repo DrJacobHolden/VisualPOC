@@ -11,7 +11,6 @@
       "kind": "Measure"
     }
   ],
-
   "dataViewMappings": [
     {
       "categorical": {
@@ -23,5 +22,6 @@
         }
       }
     }
-  ]
+  ],
+  "suppressDefaultTitle": true
 }

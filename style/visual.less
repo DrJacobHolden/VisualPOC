@@ -1,28 +1,27 @@
-p {
-  font-size: 20px;
-  font-weight: bold;
-  em {
-    background: yellow;
-    padding: 5px;
-  }
+@font-face {
+  font-family: "Roboto Bold";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Roboto Bold"), local("Roboto-Bold"),
+    url(https://fonts.gstatic.com/s/roboto/v16/d-6IYplOFocCacKzxwXSOJBw1xU1rKptJj_0jans920.woff2)
+      format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
 }
 
-.circleCard {
-  position: relative;
-  box-sizing: border-box;
-  border: 1px solid #000;
-  border-radius: 50%;
-  min-width: 200px;
-  min-height: 200px;
+.root {
+  font-family: "Roboto Bold";
+  font-weight: bold;
+  color: #2e2e2e;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 0.1rem 0.3rem 0 rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
 }
 
-p {
-  text-align: center;
-  line-height: 30px;
-  font-size: 20px;
-  font-weight: bold;
-
+.chart-container {
   position: relative;
-  top: -30px;
-  margin: 50% 0 0 0;
 }

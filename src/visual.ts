@@ -11,7 +11,6 @@ import IVisual = powerbi.extensibility.visual.IVisual;
 import IViewport = powerbi.IViewport;
 
 import { ReactCircleCard, initialState } from "./component";
-import "./../style/visual.less";
 
 export class Visual implements IVisual {
   private viewport: IViewport;
@@ -28,8 +27,6 @@ export class Visual implements IVisual {
   public update(options: VisualUpdateOptions) {
     if (options.dataViews && options.dataViews[0]) {
       const dataView: DataView = options.dataViews[0];
-
-      console.log(dataView);
 
       this.viewport = options.viewport;
       const { width, height } = this.viewport;
