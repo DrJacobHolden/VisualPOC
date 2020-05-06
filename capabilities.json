@@ -1,0 +1,27 @@
+{
+  "dataRoles": [
+    {
+      "displayName": "Time (X-Axis)",
+      "name": "time",
+      "kind": "Grouping"
+    },
+    {
+      "displayName": "Count",
+      "name": "count",
+      "kind": "Measure"
+    }
+  ],
+
+  "dataViewMappings": [
+    {
+      "categorical": {
+        "categories": {
+          "for": { "in": "time" }
+        },
+        "values": {
+          "select": [{ "bind": { "to": "count" } }]
+        }
+      }
+    }
+  ]
+}
