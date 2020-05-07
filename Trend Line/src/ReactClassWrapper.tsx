@@ -12,7 +12,7 @@ const initialState: State = {
   dates: [],
 };
 
-class ReactCircleCard extends React.Component<{}, State> {
+class ReactClassWrapper extends React.Component<{}, State> {
   constructor(props: any) {
     super(props);
     this.state = initialState;
@@ -21,21 +21,21 @@ class ReactCircleCard extends React.Component<{}, State> {
   private static updateCallback: (data: object) => void = null;
 
   public static update(newState: State) {
-    if (typeof ReactCircleCard.updateCallback === "function") {
-      ReactCircleCard.updateCallback(newState);
+    if (typeof ReactClassWrapper.updateCallback === "function") {
+      ReactClassWrapper.updateCallback(newState);
     }
   }
 
   public state: State = initialState;
 
   public componentWillMount() {
-    ReactCircleCard.updateCallback = (newState: State): void => {
+    ReactClassWrapper.updateCallback = (newState: State): void => {
       this.setState(newState);
     };
   }
 
   public componentWillUnmount() {
-    ReactCircleCard.updateCallback = null;
+    ReactClassWrapper.updateCallback = null;
   }
 
   render() {
@@ -45,4 +45,4 @@ class ReactCircleCard extends React.Component<{}, State> {
   }
 }
 
-export { ReactCircleCard, initialState, State };
+export { ReactClassWrapper, initialState, State };

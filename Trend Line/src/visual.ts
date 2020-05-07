@@ -10,7 +10,7 @@ import VisualUpdateOptions = powerbi.extensibility.visual.VisualUpdateOptions;
 import IVisual = powerbi.extensibility.visual.IVisual;
 import IViewport = powerbi.IViewport;
 
-import { ReactCircleCard, initialState } from "./component";
+import { ReactClassWrapper, initialState } from "./ReactClassWrapper";
 
 export class Visual implements IVisual {
   private viewport: IViewport;
@@ -18,7 +18,7 @@ export class Visual implements IVisual {
   private reactRoot: React.ComponentElement<any, any>;
 
   constructor(options: VisualConstructorOptions) {
-    this.reactRoot = React.createElement(ReactCircleCard, {});
+    this.reactRoot = React.createElement(ReactClassWrapper, {});
     this.target = options.element;
 
     ReactDOM.render(this.reactRoot, this.target);
@@ -31,7 +31,7 @@ export class Visual implements IVisual {
       this.viewport = options.viewport;
       const { width, height } = this.viewport;
 
-      ReactCircleCard.update({
+      ReactClassWrapper.update({
         size: { width, height },
         dates: dataView.categorical.categories[0].values,
       });
@@ -41,6 +41,6 @@ export class Visual implements IVisual {
   }
 
   private clear() {
-    ReactCircleCard.update(initialState);
+    ReactClassWrapper.update(initialState);
   }
 }
