@@ -84,13 +84,13 @@ const TypeBreakdown = ({
   return (
     <div className="root">
       <h2>VIOLATION TYPES</h2>
-      <span className="total-display">{types.length} total violations</span>
       <div
         className="chart-container"
         style={{
           height: `calc(${height}px - 238px)`,
         }}
       >
+        <span className="total-display">{types.length} total violations</span>
         <canvas ref={canvas} />
       </div>
       <div className="types-container">

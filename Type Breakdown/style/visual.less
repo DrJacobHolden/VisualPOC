@@ -28,7 +28,6 @@
   display: flex;
   flex-direction: column;
   background-color: white;
-  position: relative;
 }
 
 h2 {
@@ -39,17 +38,18 @@ h2 {
 }
 
 .total-display {
-  color: #c4c4c4;
   position: absolute;
-  top: 122px;
+  top: calc(50% - 50px);
+  color: #c4c4c4;
 }
 
 .chart-container {
+  margin-top: 20px;
   position: relative;
+  width: 100%;
 }
 
 .types-container {
-  margin-top: 20px;
   display: flex;
   flex-wrap: wrap;
 }
