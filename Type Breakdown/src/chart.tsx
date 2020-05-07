@@ -19,7 +19,7 @@ const TypeBreakdown = ({
   const canvas = useRef();
   const chart = useRef();
 
-  const types = Object.keys(countsByType);
+  const types = Object.keys(countsByType).sort();
 
   const chartData = types.reduce(
     (acc, type, index) => {

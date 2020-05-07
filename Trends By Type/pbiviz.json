@@ -1,0 +1,20 @@
+{
+  "visual": {
+    "name": "eroadTrendByType",
+    "displayName": "Trend by Type - EROAD",
+    "guid": "eroadTrendByTypeAEDE6E435EA147AA9A3AEF577C416962",
+    "visualClassName": "Visual",
+    "version": "1.0.0",
+    "description": "A tendline graph broken down by the supplied type.",
+    "supportUrl": "https://eroad.com",
+    "gitHubUrl": ""
+  },
+  "apiVersion": "2.6.0",
+  "author": { "name": "Tate Robertson", "email": "tate.robertson@eroad.com" },
+  "assets": { "icon": "assets/icon.png" },
+  "externalJS": null,
+  "style": "style/visual.less",
+  "capabilities": "capabilities.json",
+  "dependencies": null,
+  "stringResources": []
+}
