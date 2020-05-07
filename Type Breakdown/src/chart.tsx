@@ -79,8 +79,6 @@ const TypeBreakdown = ({
 
   const { width, height } = size;
 
-  console.log(chartData);
-
   return (
     <div className="root">
       <h2>VIOLATION TYPES</h2>
