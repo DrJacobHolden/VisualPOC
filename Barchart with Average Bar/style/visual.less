@@ -1,0 +1,60 @@
+@font-face {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Roboto Regular"), local("Roboto-Regular"),
+    url(https://fonts.gstatic.com/s/roboto/v14/CrYjSnGjrRCn0pd9VQsnFOvvDin1pK8aKteLpeZ5c0A.woff)
+      format("woff");
+}
+
+@font-face {
+  font-family: "Roboto Bold";
+  font-style: normal;
+  font-weight: 700;
+  src: local("Roboto Bold"), local("Roboto-Bold"),
+    url(https://fonts.gstatic.com/s/roboto/v16/d-6IYplOFocCacKzxwXSOJBw1xU1rKptJj_0jans920.woff2)
+      format("woff2");
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC,
+    U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+.root {
+  font-size: 14px;
+  color: #2f2f2f;
+  border: 1px solid #e8e8e8;
+  box-shadow: 0 0.1rem 0.3rem 0 rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  margin: 8px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+
+h2 {
+  font-family: "Roboto Bold";
+  font-weight: bold;
+  color: #2e2e2e;
+  margin-top: 0px;
+}
+
+.chart-container {
+  position: relative;
+  width: 100%;
+}
+
+.key-container {
+  display: flex;
+  margin-top: 20px;
+}
+
+.key-container > * {
+  margin-right: auto;
+}
+
+.type-circle {
+  display: inline-block;
+  height: 8px;
+  width: 8px;
+  border-radius: 50%;
+  margin-right: 4px;
+}

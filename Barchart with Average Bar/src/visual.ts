@@ -31,22 +31,16 @@ export class Visual implements IVisual {
       this.viewport = options.viewport;
       const { width, height } = this.viewport;
 
-      const dates = dataView.categorical.categories[0].values.map(
-        // @ts-ignore
-        (date) => new Date(date)
-      );
-      const countsByType = dataView.categorical.values.reduce((acc, value) => {
-        const type = value.source.groupName;
-        const counts = value.values;
-        // @ts-ignore
-        acc[type] = counts;
-        return acc;
-      }, {});
+      const types = dataView.categorical.categories[0].values;
+      const typeCountList = dataView.categorical.values[0].values;
 
       ReactClassWrapper.update({
         size: { width, height },
-        dates,
-        countsByType,
+        countsByType: types.reduce((acc, type, index) => {
+          // @ts-ignore
+          acc[type] = typeCountList[index];
+          return acc;
+        }, {}),
       });
     } else {
       this.clear();
