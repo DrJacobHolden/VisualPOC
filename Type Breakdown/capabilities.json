@@ -1,0 +1,27 @@
+{
+  "dataRoles": [
+    {
+      "displayName": "Types (X-Axis)",
+      "name": "types",
+      "kind": "Grouping"
+    },
+    {
+      "displayName": "Count",
+      "name": "count",
+      "kind": "Measure"
+    }
+  ],
+  "dataViewMappings": [
+    {
+      "categorical": {
+        "categories": {
+          "for": { "in": "types" }
+        },
+        "values": {
+          "select": [{ "bind": { "to": "count" } }]
+        }
+      }
+    }
+  ],
+  "suppressDefaultTitle": true
+}
