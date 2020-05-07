@@ -29,6 +29,7 @@ const ViolationTrend = ({ size, dates }) => {
             x.getMonth() === date.getMonth() &&
             x.getFullYear() === date.getFullYear()
         );
+
         if (!datapoint) {
           datapoint = {
             x: dayGranularity
@@ -38,10 +39,12 @@ const ViolationTrend = ({ size, dates }) => {
           };
           dateData.push(datapoint);
         }
+
         return datapoint;
       };
 
       const datapoint = getDatapoint();
+      // TODO: Use the provided count
       datapoint.y += 1;
 
       return acc;
