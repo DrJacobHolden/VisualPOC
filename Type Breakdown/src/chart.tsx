@@ -104,12 +104,12 @@ const TypeBreakdown = ({
               type.replace(/_/g, " ").slice(1).toLowerCase()}
             <div className="type-value">
               {Math.round(
-                (types.reduce((count, toMatch) => {
-                  // eslint-disable-next-line no-param-reassign
-                  if (type === toMatch) count++;
-                  return count;
-                }, 0) /
-                  types.length) *
+                (countsByType[type] /
+                  types.reduce((count, toMatch) => {
+                    // eslint-disable-next-line no-param-reassign
+                    count += countsByType[toMatch];
+                    return count;
+                  }, 0)) *
                   100
               )}
               %

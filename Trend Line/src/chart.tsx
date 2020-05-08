@@ -15,7 +15,7 @@ const ViolationTrend = ({ size, dates }) => {
 
   const dayGranularity =
     data.length > 0
-      ? (data[data.length - 1].date - data[0].date) / (1000 * 3600 * 24) < 90
+      ? (data[data.length - 1].date - data[0].date) / (1000 * 3600 * 24) < 30
       : true;
 
   const chartData = data.reduce(
