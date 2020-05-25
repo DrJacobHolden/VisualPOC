@@ -1,56 +1,25 @@
 import * as React from "react";
 import Chart from "chart.js";
 
+import { transformData } from "./transformData";
+import { COLOURS } from "./constants";
 import "./../style/visual.less";
 
 const { useEffect, useRef } = React;
 
-const COLOURS = ["#9B59B6", "#6DC7BB", "#F89020", "#C64799"];
-
-const TypeBreakdown = ({
+const EROADChart = ({
   size,
-  countsByType,
+  dataView,
+  visualSettings,
 }: {
   size: { width: number; height: number };
-  countsByType: {
-    [key: string]: number;
-  };
+  dataView: any;
+  visualSettings: any;
 }) => {
   const canvas = useRef();
   const chart = useRef();
 
-  const types = Object.keys(countsByType).sort();
-
-  const chartData = types.reduce(
-    (acc, type, index) => {
-      acc.datasets.push({
-        backgroundColor: COLOURS[index],
-        data: [
-          0,
-          ...types.map((_, typeIndex) =>
-            index === typeIndex ? countsByType[type] : 0
-          ),
-        ],
-      });
-      return acc;
-    },
-    {
-      labels: ["Average", ...types],
-      datasets: [
-        {
-          backgroundColor: "#1869B7",
-          data: [
-            // TODO: This is currently the average of averages.
-            types.reduce((acc, type) => {
-              acc += countsByType[type];
-              return acc;
-            }, 0) / types.length,
-            ...types.map(() => 0),
-          ],
-        },
-      ],
-    }
-  );
+  const { chartData, types } = transformData(dataView);
 
   useEffect(() => {
     if (canvas.current) {
@@ -86,7 +55,7 @@ const TypeBreakdown = ({
 
   return (
     <div className="root">
-      <h2>VIOLATION DURATION</h2>
+      <h2>{visualSettings.card_title.title}</h2>
       <div
         className="chart-container"
         style={{
@@ -96,15 +65,6 @@ const TypeBreakdown = ({
         <canvas ref={canvas} />
       </div>
       <div className="key-container">
-        <span>
-          <div
-            className="type-circle"
-            style={{
-              backgroundColor: "#1869B7",
-            }}
-          />
-          Average
-        </span>
         {types.map((type, index) => (
           <span>
             <div
@@ -113,8 +73,7 @@ const TypeBreakdown = ({
                 backgroundColor: COLOURS[index],
               }}
             />
-            {(type.replace(/_/g, " ")[0] || "").toUpperCase() +
-              type.replace(/_/g, " ").slice(1).toLowerCase()}
+            {type}
           </span>
         ))}
       </div>
@@ -122,4 +81,4 @@ const TypeBreakdown = ({
   );
 };
 
-export { TypeBreakdown };
+export { EROADChart };

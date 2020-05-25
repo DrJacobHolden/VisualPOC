@@ -1,11 +1,11 @@
 {
   "visual": {
-    "name": "eroadBarWithAverage",
-    "displayName": "Barchart with Average - EROAD",
-    "guid": "eroadBarWithAverageAEDE6E435EA147AA9A3AEF577C416962",
+    "name": "eroadBarchart",
+    "displayName": "Barchart - EROAD",
+    "guid": "eroadBarchartAEDE6E435EA147AA9A3AEF577C416962",
     "visualClassName": "Visual",
     "version": "1.0.0",
-    "description": "A standard barchart that also shows an average bar.",
+    "description": "A standard barchart.",
     "supportUrl": "https://eroad.com",
     "gitHubUrl": ""
   },
