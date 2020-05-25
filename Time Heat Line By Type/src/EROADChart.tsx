@@ -1,77 +1,25 @@
 import * as React from "react";
 import Chart from "chart.js";
 
+import { COLOURS } from "./constants";
+import { transformData } from "./transformData";
 import "./../style/visual.less";
 
 const { useEffect, useRef } = React;
 
-const COLOURS = ["#9B59B6", "#6DC7BB", "#F89020", "#C64799"];
-const HOUR_LABELS = [
-  "M",
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  10,
-  11,
-  "N",
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  10,
-  11,
-];
-
-const TrendsByType = ({
+const EROADChart = ({
   size,
-  dates,
-  countsByType,
+  dataView,
+  visualSettings,
 }: {
   size: { width: number; height: number };
-  dates: Date[];
-  countsByType: {
-    [key: string]: number | null;
-  };
+  dataView: any;
+  visualSettings: any;
 }) => {
   const canvas = useRef();
   const chart = useRef();
 
-  const types = Object.keys(countsByType).sort();
-
-  // Loop through all the provided timestamps
-  const chartData = dates.reduce(
-    (acc, date, dateIndex) => {
-      // essentially - for each type in types
-      acc.datasets.forEach(({ data, label }) => {
-        let countAtDate = countsByType[label][dateIndex];
-        if (countAtDate === null) countAtDate = 0;
-
-        data[date.getHours()] += countAtDate;
-      });
-
-      return acc;
-    },
-    {
-      labels: HOUR_LABELS,
-      datasets: types.map((type, index) => ({
-        label: type,
-        data: HOUR_LABELS.map(() => 0),
-        fill: false,
-        borderColor: COLOURS[index],
-        pointRadius: 0,
-      })),
-    }
-  );
+  const { chartData, types } = transformData(dataView);
 
   useEffect(() => {
     if (canvas.current) {
@@ -100,7 +48,7 @@ const TrendsByType = ({
 
   return (
     <div className="root">
-      <h2>VIOLATIONS TIMES</h2>
+      <h2>{visualSettings.card_title.title}</h2>
       <div
         className="chart-container"
         style={{
@@ -118,8 +66,7 @@ const TrendsByType = ({
                 backgroundColor: COLOURS[index],
               }}
             />
-            {(type.replace(/_/g, " ")[0] || "").toUpperCase() +
-              type.replace(/_/g, " ").slice(1).toLowerCase()}
+            {type}
           </span>
         ))}
       </div>
@@ -127,4 +74,4 @@ const TrendsByType = ({
   );
 };
 
-export { TrendsByType };
+export { EROADChart };

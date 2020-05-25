@@ -10,7 +10,7 @@ export const transformData = (dataView) => {
     ((dataView.categorical?.categories || [])[0] || {}).values || []
   ).map(titlecase);
   const typeCountList =
-    ((dataView.categorical?.values || [])[0] || {}).values || {};
+    ((dataView.categorical?.values || [])[0] || {}).values || [];
 
   const countsByType = types.reduce((acc, type, index) => {
     // @ts-ignore

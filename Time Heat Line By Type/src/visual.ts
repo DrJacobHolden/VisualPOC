@@ -3,7 +3,10 @@ import "@babel/polyfill";
 import powerbi from "powerbi-visuals-api";
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import { VisualSettings } from "./settings";
 
+import VisualObjectInstanceEnumeration = powerbi.VisualObjectInstanceEnumeration;
+import EnumerateVisualObjectInstancesOptions = powerbi.EnumerateVisualObjectInstancesOptions;
 import DataView = powerbi.DataView;
 import VisualConstructorOptions = powerbi.extensibility.visual.VisualConstructorOptions;
 import VisualUpdateOptions = powerbi.extensibility.visual.VisualUpdateOptions;
@@ -16,6 +19,7 @@ export class Visual implements IVisual {
   private viewport: IViewport;
   private target: HTMLElement;
   private reactRoot: React.ComponentElement<any, any>;
+  private visualSettings: VisualSettings;
 
   constructor(options: VisualConstructorOptions) {
     this.reactRoot = React.createElement(ReactClassWrapper, {});
@@ -24,29 +28,26 @@ export class Visual implements IVisual {
     ReactDOM.render(this.reactRoot, this.target);
   }
 
+  public enumerateObjectInstances(
+    options: EnumerateVisualObjectInstancesOptions
+  ): VisualObjectInstanceEnumeration {
+    const settings: VisualSettings =
+      this.visualSettings || <VisualSettings>VisualSettings.getDefault();
+    return VisualSettings.enumerateObjectInstances(settings, options);
+  }
+
   public update(options: VisualUpdateOptions) {
     if (options.dataViews && options.dataViews[0]) {
       const dataView: DataView = options.dataViews[0];
 
+      this.visualSettings = VisualSettings.parse<VisualSettings>(dataView);
       this.viewport = options.viewport;
       const { width, height } = this.viewport;
 
-      const dates = dataView.categorical.categories[0].values.map(
-        // @ts-ignore
-        (date) => new Date(date)
-      );
-      const countsByType = dataView.categorical.values.reduce((acc, value) => {
-        const type = value.source.groupName;
-        const counts = value.values;
-        // @ts-ignore
-        acc[type] = counts;
-        return acc;
-      }, {});
-
       ReactClassWrapper.update({
         size: { width, height },
-        dates,
-        countsByType,
+        visualSettings: this.visualSettings,
+        dataView,
       });
     } else {
       this.clear();
