@@ -1,17 +1,17 @@
 import * as React from "react";
 
-import { TypeBreakdown } from "./chart";
+import { EROADChart } from "./EROADChart";
 
 interface State {
   size: { width: number; height: number };
-  countsByType: {
-    [key: string]: number;
-  };
+  visualSettings: any;
+  dataView: any;
 }
 
 const initialState: State = {
   size: { width: 0, height: 0 },
-  countsByType: {},
+  visualSettings: undefined,
+  dataView: undefined,
 };
 
 class ReactClassWrapper extends React.Component<{}, State> {
@@ -41,9 +41,15 @@ class ReactClassWrapper extends React.Component<{}, State> {
   }
 
   render() {
-    const { countsByType, size } = this.state;
+    const { dataView, visualSettings, size } = this.state;
 
-    return <TypeBreakdown size={size} countsByType={countsByType} />;
+    return dataView && visualSettings ? (
+      <EROADChart
+        size={size}
+        dataView={dataView}
+        visualSettings={visualSettings}
+      />
+    ) : null;
   }
 }
 

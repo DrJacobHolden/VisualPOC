@@ -1,15 +1,17 @@
 import * as React from "react";
 
-import { ViolationTrend } from "./chart";
+import { EROADChart } from "./EROADChart";
 
 interface State {
-  size: Object;
-  dates: any;
+  size: { width: number; height: number };
+  visualSettings: any;
+  dataView: any;
 }
 
 const initialState: State = {
   size: { width: 0, height: 0 },
-  dates: [],
+  visualSettings: undefined,
+  dataView: undefined,
 };
 
 class ReactClassWrapper extends React.Component<{}, State> {
@@ -39,9 +41,15 @@ class ReactClassWrapper extends React.Component<{}, State> {
   }
 
   render() {
-    const { dates, size } = this.state;
+    const { dataView, visualSettings, size } = this.state;
 
-    return <ViolationTrend size={size} dates={dates} />;
+    return dataView && visualSettings ? (
+      <EROADChart
+        size={size}
+        dataView={dataView}
+        visualSettings={visualSettings}
+      />
+    ) : null;
   }
 }
 

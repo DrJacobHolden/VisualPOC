@@ -1,44 +1,25 @@
 import * as React from "react";
 import Chart from "chart.js";
 
+import { COLOURS } from "./constants";
+import { transformData } from "./transformData";
 import "./../style/visual.less";
 
 const { useEffect, useRef } = React;
 
-const COLOURS = ["#9B59B6", "#6DC7BB", "#F89020", "#C64799"];
-
-const TypeBreakdown = ({
+const EROADChart = ({
   size,
-  countsByType,
+  dataView,
+  visualSettings,
 }: {
   size: { width: number; height: number };
-  countsByType: {
-    [key: string]: number;
-  };
+  dataView: any;
+  visualSettings: any;
 }) => {
   const canvas = useRef();
   const chart = useRef();
 
-  const types = Object.keys(countsByType).sort();
-
-  const chartData = types.reduce(
-    (acc, type, index) => {
-      acc.datasets.push({
-        label: type,
-        backgroundColor: COLOURS[index],
-        data: [countsByType[type]],
-        borderWidth:
-          Object.keys(acc.datasets).length === types.length ? 0 : { right: 2 },
-        borderColor: "#FFFFFF",
-        barThickness: 60,
-      });
-      return acc;
-    },
-    {
-      labels: [],
-      datasets: [],
-    }
-  );
+  const { chartData, countsByType, types } = transformData(dataView);
 
   useEffect(() => {
     if (canvas.current) {
@@ -81,7 +62,7 @@ const TypeBreakdown = ({
 
   return (
     <div className="root">
-      <h2>VIOLATION TYPES</h2>
+      <h2>{visualSettings.card_title.title}</h2>
       <div
         className="chart-container"
         style={{
@@ -100,13 +81,11 @@ const TypeBreakdown = ({
                 backgroundColor: COLOURS[types.indexOf(type)],
               }}
             />
-            {(type.replace(/_/g, " ")[0] || "").toUpperCase() +
-              type.replace(/_/g, " ").slice(1).toLowerCase()}
+            {type}
             <div className="type-value">
               {Math.round(
                 (countsByType[type] /
                   types.reduce((count, toMatch) => {
-                    // eslint-disable-next-line no-param-reassign
                     count += countsByType[toMatch];
                     return count;
                   }, 0)) *
@@ -121,4 +100,4 @@ const TypeBreakdown = ({
   );
 };
 
-export { TypeBreakdown };
+export { EROADChart };

@@ -11,6 +11,20 @@
       "kind": "Measure"
     }
   ],
+  "objects": {
+    "card_title": {
+      "displayName": "Card Title",
+      "properties": {
+        "title": {
+          "displayName": "Title",
+          "description": "The card title",
+          "type": {
+            "text": true
+          }
+        }
+      }
+    }
+  },
   "dataViewMappings": [
     {
       "categorical": {

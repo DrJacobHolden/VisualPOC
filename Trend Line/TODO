@@ -1,3 +1,13 @@
+Phase 1:
+Allow specifying graph title.
+Rename files to match standards
+  Rename component to EROADChart
+  Create transformData helper
+  Create constants file
+  Create settings file
+  Rename visual to Visual
+Pass dataView/visualSettings to terminal
 Use the provided count for each datapoint.
+
+Phase 2:
 Specify appropriate icon.
-Allow specifying of graph title.

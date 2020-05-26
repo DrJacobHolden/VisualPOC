@@ -1,19 +1,17 @@
 import * as React from "react";
 
-import { TrendsByType } from "./chart";
+import { EROADChart } from "./EROADChart";
 
 interface State {
   size: { width: number; height: number };
-  dates: Date[];
-  countsByType: {
-    [key: string]: number | null;
-  };
+  visualSettings: any;
+  dataView: any;
 }
 
 const initialState: State = {
   size: { width: 0, height: 0 },
-  dates: [],
-  countsByType: {},
+  visualSettings: undefined,
+  dataView: undefined,
 };
 
 class ReactClassWrapper extends React.Component<{}, State> {
@@ -43,11 +41,15 @@ class ReactClassWrapper extends React.Component<{}, State> {
   }
 
   render() {
-    const { countsByType, dates, size } = this.state;
+    const { dataView, visualSettings, size } = this.state;
 
-    return (
-      <TrendsByType dates={dates} countsByType={countsByType} size={size} />
-    );
+    return dataView && visualSettings ? (
+      <EROADChart
+        size={size}
+        dataView={dataView}
+        visualSettings={visualSettings}
+      />
+    ) : null;
   }
 }
 

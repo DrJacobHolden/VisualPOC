@@ -1,3 +1,13 @@
+Phase 1:
+Allow specifying graph title.
+Rename files to match standards
+  Rename component to EROADChart
+  Create transformData helper
+  Create constants file
+  Create settings file
+  Rename visual to Visual
+Pass dataView/visualSettings to terminal
+
+Phase 2:
 Allow definition of colours from PowerBI.
 Specify appropriate icon.
-Allow specifying graph title.
